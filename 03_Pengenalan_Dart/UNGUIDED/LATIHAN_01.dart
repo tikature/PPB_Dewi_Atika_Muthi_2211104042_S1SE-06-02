@@ -1,143 +1,83 @@
+import 'dart:io';
+
+// Fungsi utama untuk menjalankan program
 void main() {
-  print('Praktikum Perangkat Bergerak \n');
+  // Tugas 1: Menerima input nilai
+  print('Masukkan nilai: ');
+  String? inputNilai = stdin.readLineSync(); // Membaca input dari pengguna
 
-  // PENAMAAN VARIABLE MENGGUNAKAN CAMELCASE
-  print('=====Variable====');
-  var name = 'Tika';
-  String loc = 'Bandung';
-  var age = 21;
-  final cuaca = 'Cerah';
+  if (inputNilai != null && int.tryParse(inputNilai) != null) {
+    int nilai = int.parse(inputNilai); // Mengonversi input ke integer
+    String hasil;
 
-  print('Hello Customer, $name.\nYou are $age');
-  print('Hari ini, $cuaca di $loc');
-
-  print('\n');
-
-// STATEMENT CONTROL PERULANGAN : if else
-  print('====Statement Control: IF-ELSE====');
-  var open = 8;
-  var close = 23;
-  var now = 12;
-
-  print('Sekarang jam $now, status cafe:');
-
-  if (now == 12) {
-    print('Cafe kami sedang break');
-  } else if (now >= open && now < close) {
-    print('Cafe ini buka');
+    // Memeriksa nilai
+    if (nilai > 70) {
+      hasil = "Nilai A";
+    } else if (nilai > 40 && nilai <= 70) {
+      hasil = "Nilai B";
+    } else if (nilai > 0 && nilai <= 40) {
+      hasil = "Nilai C";
+    } else {
+      hasil = "Nilai tidak valid.";
+    }
+    print('$nilai merupakan $hasil'); // Menampilkan hasil
   } else {
-    print('Cafe sudah tutup');
+    print('Input tidak valid, harap masukkan bilangan bulat.');
   }
 
-// STATEMENT CONTROL PERULANGAN : if else-true : false
-  print('====IF ELSE DENGAN TRUE FALSE====');
-  var nowT = 10;
-  var openT = 7;
-  var toko = nowT > openT ? "Toko Buka" : "Toko Tutup";
-  print('Sekarang jam $nowT, status toko:');
-  print(toko);
+  // Tugas 2: Menampilkan piramida bintang
+  print('Masukkan tinggi piramida: ');
+  String? inputTinggi = stdin.readLineSync();
 
-  print('\n');
+  if (inputTinggi != null && int.tryParse(inputTinggi) != null) {
+    int tinggi = int.parse(inputTinggi);
 
-// SWITCH CASE : NILAI
-  print('====SWITCH CASE====');
-  var nilai = 85;
+    // Mencetak piramida
+    for (int i = 1; i <= tinggi; i++) {
+      String line = ''; // Variabel untuk menyimpan baris
 
-  // KONDISI if else untuk grade
-  String grade;
-  if (nilai >= 90) {
-    grade = 'a';
-  } else if (nilai >= 80) {
-    grade = 'b';
-  } else if (nilai >= 70) {
-    grade = 'c';
-  } else if (nilai >= 60) {
-    grade = 'd';
+      // Menambahkan spasi di depan
+      for (int j = tinggi; j > i; j--) {
+        line += ' '; // Menambahkan spasi ke string
+      }
+
+      // Menambahkan bintang ke baris
+      for (int k = 1; k <= (2 * i - 1); k++) {
+        line += '*'; // Menambahkan bintang ke string
+      }
+
+      print(line); // Mencetak seluruh baris
+    }
   } else {
-    grade = 'f';
-  }
-  print('Nilai kamu: $nilai \nGrade kamu: $grade');
-
-  // SWITCH CASE untuk grade
-  switch (grade) {
-    case 'a':
-      print("Nilai kamu sangat bagus");
-      break;
-    case 'b':
-      print("Nilai kamu baik");
-      break;
-    case 'c':
-      print("Nilai sudah cukup");
-      break;
-    case 'd':
-      print("Nilai kamu lumayan");
-      break;
-    case 'f':
-      print("Nilai kamu gagal");
-      break;
-  }
-  print('\n');
-
-  // For loop untuk mencetak angka 1 sampai 5
-  print('====FOR LOOP====');
-  for (int i = 1; i <= 5; i++) {
-    print(i);
-  }
-  // While loop
-  print('====WHILE LOOP====');
-  int i = 1;
-  while (i <= 5) {
-    print('Angka: $i');
-    i++;
+    print('Input tidak valid, harap masukkan bilangan bulat.');
   }
 
-  print('\n');
+  // Tugas 3: Mengecek bilangan prima
+  print('Masukkan bilangan bulat: ');
+  String? inputBilangan = stdin.readLineSync();
 
-// LIST
-  print('====LIST====');
-  List<int> fixedList = List.filled(3, 0);
+  if (inputBilangan != null && int.tryParse(inputBilangan) != null) {
+    int bilangan = int.parse(inputBilangan);
 
-  fixedList[0] = 10;
-  fixedList[1] = 20;
-  fixedList[2] = 30;
-
-  print('fixed list : $fixedList');
-
-  print('Membuat list baru:');
-  List<int> growableList = [];
-
-  growableList.add(10);
-  growableList.add(20);
-  growableList.add(30);
-
-  print(growableList);
-
-  print('Menambahkan elemen baru dengan ADD:');
-  growableList.add(40);
-  growableList.add(50);
-  growableList.add(60);
-
-  print(growableList);
-
-  print('Menghapus elemen yang ada dengan REMOVE:');
-  growableList.remove(20);
-
-  print(growableList);
-
-  print('\n');
-
-// FUNGSI
-  print('====FUNGSI====');
-  void cetakPesan(String pesan) {
-    print(pesan); // mendefinisikan fungsi tanpa mengembalikan nilai
+    if (isPrima(bilangan)) {
+      print('$bilangan merupakan bilangan prima');
+    } else {
+      print('$bilangan bukan bilangan prima');
+    }
+  } else {
+    print('Input tidak valid, harap masukkan bilangan bulat.');
   }
+}
 
-  int perkalian(int a, int b) {
-    return a * b; // mengemmbalikan nilai dengan return
+// Fungsi untuk mengecek apakah bilangan prima
+bool isPrima(int number) {
+  if (number <= 1) {
+    return false; // 0 dan 1 bukan bilangan prima
   }
-
-  int hasil = perkalian(4, 3); // Memanggil fungsi: perkalian
-  print('Hasil perkalian fungsi = $hasil'); // Memanggil fungsi
-  cetakPesan(
-      'Selesai, sampai bertemu lagi di pertemuan selanjutnya!'); // Memanggil fungsi
+  for (int i = 2; i <= number ~/ 2; i++) {
+    if (number % i == 0) {
+      return false; // Bilangan habis dibagi
+    }
+  }
+  return true; // Bilangan prima
 }
