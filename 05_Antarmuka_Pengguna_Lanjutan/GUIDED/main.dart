@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:prak5/customScrollView.dart';
 import 'package:prak5/flex_exp.dart';
 import 'package:prak5/jenis_listview.dart';
+import 'package:prak5/viewbuild.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
@@ -27,7 +28,8 @@ class Mod5 extends StatelessWidget {
             .copyWith(secondary: const Color(0xFF4E9F3D)),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: //JenisListView(),
+      home: //ViewBuild(),
+          //JenisListView(),
           //FlexExp(),
           Customscrollview(),
     );
