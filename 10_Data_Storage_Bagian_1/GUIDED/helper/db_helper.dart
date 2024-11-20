@@ -24,7 +24,7 @@ class DatabaseHelper {
   // Inisialisasi Database
   Future<Database> _initDatabase() async {
     // mendapatkan path untuk database
-    String path = join(await getDatabasesPath(), 'dimascahyo.db');
+    String path = join(await getDatabasesPath(), 'tikature.db');
     // membuka database
     return await openDatabase(
       path,
