@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Data Storage with REST API'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
             ElevatedButton(
@@ -53,18 +53,21 @@ class _HomeScreenState extends State<HomeScreen> {
               style: ElevatedButton.styleFrom(backgroundColor: Colors.orange),
               child: const Text('GET'),
             ),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => _handleApiOperation(
                   _apiService.createPost(), 'Post successfully created!'),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
               child: const Text('POST'),
             ),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => _handleApiOperation(
                   _apiService.updatePost(), 'Post successfully updated!'),
               style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
               child: const Text('UPDATE'),
             ),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () => _handleApiOperation(
                   _apiService.deletePost(), 'Post successfully deleted!'),
