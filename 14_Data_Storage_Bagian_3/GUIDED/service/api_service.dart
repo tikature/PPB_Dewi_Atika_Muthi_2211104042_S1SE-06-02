@@ -3,9 +3,8 @@ import 'package:http/http.dart' as http;
 
 class ApiService {
   final String baseUrl = "https://jsonplaceholder.typicode.com";
-  List<dynamic> posts = [];
-
-  // Fetch posts (GET)
+  List<dynamic> posts = []; // Menyimpan data post yang diterima
+// Fungsi untuk GET data
   Future<void> fetchPosts() async {
     final response = await http.get(Uri.parse('$baseUrl/posts'));
     if (response.statusCode == 200) {
@@ -15,22 +14,21 @@ class ApiService {
     }
   }
 
-  // Create a new post (POST)
+  // Fungsi untuk POST data
   Future<void> createPost() async {
     final response = await http.post(
       Uri.parse('$baseUrl/posts'),
       headers: {'Content-Type': 'application/json'},
       body: json.encode({
         'title': 'Flutter Post',
-        'body': 'This is a sample post.',
+        'body': 'Ini contoh POST.',
         'userId': 1,
       }),
     );
-
     if (response.statusCode == 201) {
       posts.add({
         'title': 'Flutter Post',
-        'body': 'This is a sample post.',
+        'body': 'Ini contoh POST.',
         'id': posts.length + 1,
       });
     } else {
@@ -38,7 +36,7 @@ class ApiService {
     }
   }
 
-  // Update a post (PUT)
+  // Fungsi untuk UPDATE data
   Future<void> updatePost() async {
     final response = await http.put(
       Uri.parse('$baseUrl/posts/1'),
@@ -48,7 +46,6 @@ class ApiService {
         'userId': 1,
       }),
     );
-
     if (response.statusCode == 200) {
       final updatedPost = posts.firstWhere((post) => post['id'] == 1);
       updatedPost['title'] = 'Updated Title';
@@ -58,9 +55,11 @@ class ApiService {
     }
   }
 
-  // Delete a post (DELETE)
+  // Fungsi untuk DELETE data
   Future<void> deletePost() async {
-    final response = await http.delete(Uri.parse('$baseUrl/posts/1'));
+    final response = await http.delete(
+      Uri.parse('$baseUrl/posts/1'),
+    );
     if (response.statusCode == 200) {
       posts.removeWhere((post) => post['id'] == 1);
     } else {
