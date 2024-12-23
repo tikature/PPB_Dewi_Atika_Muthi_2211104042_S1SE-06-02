@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:md13/my_maps.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-void main() {
-  runApp(const MyApp());
+class MapsScreen extends StatefulWidget {
+  @override
+  _MapsScreenState createState() => _MapsScreenState();
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+class _MapsScreenState extends State<MapsScreen> {
+  static final LatLng _kMapCenter = LatLng(-7.431391, 109.247833);
+  static final CameraPosition _kInitialPosition = CameraPosition(
+    target: _kMapCenter,
+    zoom: 11.0,
+  );
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Google Maps Demo'),
       ),
-      home: MapsScreen(),
+      body: GoogleMap(
+        initialCameraPosition: _kInitialPosition,
+        myLocationEnabled: true,
+      ),
     );
   }
 }
